@@ -10,6 +10,15 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn
       - run:
+          name: Set up and run backend
+          command: |
+            cd ../
+            git clone git@github.com:ashleemboyer/react-flask-testing-backend.git
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install flask python-dotenv
+            flask run
+      - run:
           name: Run tests
           command: yarn test:e2e
 
